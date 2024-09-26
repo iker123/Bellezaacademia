@@ -1,5 +1,4 @@
-<div class="modal fade" id="pagarCurso" tabindex="-1"
-    aria-labelledby="pagarCursoLabel" aria-hidden="true">
+<div class="modal fade" id="pagarCurso" tabindex="-1" aria-labelledby="pagarCursoLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -47,6 +46,11 @@
                             <input type="number" name="monto" class="form-control" placeholder="Ingrese Monto"
                                 required>
                         </div>
+                        <div class="col-sm-12">
+                            <strong>Observación:</strong>
+                            <textarea name="observacion" class="form-control" rows="1" placeholder="Ingrese Observaciones"></textarea>
+                        </div>
+                        <input type="hidden" name="alumnocurso_id" value="{{ $detalle->id }}">
                     </div>
                 </div>
 

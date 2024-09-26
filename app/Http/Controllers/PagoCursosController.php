@@ -30,12 +30,9 @@ class PagoCursosController extends Controller
      */
     public function store(Request $request)
     {
-
-        ;
         $validator = Validator::make($request->all(), [
-            'alumnocurso_id' => 'required',
-            'monto'=>'numeric|required',
-            'observacion'=>'nullable'
+            'monto' => 'required|numeric|min:1',
+            'observacion' => 'nullable|min:3',
         ]);
 
         if ($validator->fails()) {
@@ -43,13 +40,14 @@ class PagoCursosController extends Controller
             return response()->json(["errors" => $validator->errors()]);
         }
 
-        $pagocurso= PagoCursos::create([
+        dd($request->id);
+        $pagocurso = PagoCursos::create([
             'alumnocurso_id' => $request->id,
             'fecha' => date('Y-m-d H:i:s'),
             'usuario' => Auth::user()->name,
-            'monto'=>$request->monto,
+            'monto' => $request->monto,
             'metodo_pago' => $request->metodo_pago,
-            'observacion'=>$request->observacion,
+            'observacion' => $request->observacion,
         ]);
         return redirect('AlumnoCurso')->with('mensaje', 'Pago registrado con éxito');
     }
@@ -57,10 +55,7 @@ class PagoCursosController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(PagoCursos $pagoCursos)
-    {
-        
-    }
+    public function show(PagoCursos $pagoCursos) {}
 
     /**
      * Show the form for editing the specified resource.
